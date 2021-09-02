@@ -10,11 +10,7 @@ class CountdownTimer {
       mins: this.parent.querySelector('[data-value="mins"]'),
       secs: this.parent.querySelector('[data-value="secs"]'),
     };
-    // this.now = Date.now();
     this.timerDate = new Date(this.targetDate).getTime();
-    // const diff = timerDate - now;
-    // console.log(now);
-    // this.diff = 1630599800000 - this.now;
   }
 
   padStrStart(num) {
@@ -31,7 +27,6 @@ class CountdownTimer {
 
   renderTime(time) {
     let { days, hours, mins, secs } = time;
-
     this.refs.days.textContent = this.padStrStart(days);
     this.refs.hours.textContent = this.padStrStart(hours);
     this.refs.mins.textContent = this.padStrStart(mins);
@@ -50,7 +45,7 @@ class CountdownTimer {
       let stopInterval = setTimeout(() => {
         this.startTimer();
       }, 1000);
-      if (time < 1000) {
+      if (time <= 0) {
         clearTimeout(stopInterval);
       }
     }
@@ -59,10 +54,10 @@ class CountdownTimer {
 
 const timer = new CountdownTimer({
   selector: "#timer-1",
-  //   targetDate: new Date(Date.now() - 10000),
+  // targetDate: new Date(Date.now() - 10000),
   targetDate: new Date("Sep 17, 2021"),
 });
 
-console.log(timer);
-
 timer.startTimer();
+
+// console.log(timer);
